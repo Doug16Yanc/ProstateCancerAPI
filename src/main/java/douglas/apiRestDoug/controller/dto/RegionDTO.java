@@ -7,14 +7,14 @@ public record RegionDTO(
         String name,
         int population,
         int malePopulation,
-        Rate rate
+        RateDTO rateDTO
 ) {
     public Region doRegion(){
         return new Region(
                 name,
                 population,
                 malePopulation,
-                rate
+                rateDTO.toRate()
         );
     }
 }

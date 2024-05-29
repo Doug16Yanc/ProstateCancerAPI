@@ -17,7 +17,7 @@ public class Region {
     private int malePopulation;
 
     @JoinColumn(name = "tb_rate_id")
-    @ManyToOne
+    @OneToOne
     private Rate rate;
     public Region() {
 
