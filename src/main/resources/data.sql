@@ -1,0 +1,4 @@
+CREATE DATABASE statistics;
+
+GRANT ALL PRIVILEGES ON statistics.* TO 'admin'@'%';
+FLUSH PRIVILEGES;

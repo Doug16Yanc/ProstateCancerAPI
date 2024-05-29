@@ -7,7 +7,7 @@ import jakarta.persistence.*;
 public class Region {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "tb_region_id")
+    @Column(name = "tb_region_id", unique = true)
     private Long id;
     @Column(name = "name", unique = true)
     private String name;
@@ -23,8 +23,7 @@ public class Region {
 
     }
 
-    public Region(Long id, String name, int population, int malePopulation, Rate rate) {
-        this.id = id;
+    public Region(String name, int population, int malePopulation, Rate rate) {
         this.name = name;
         this.population = population;
         this.malePopulation = malePopulation;

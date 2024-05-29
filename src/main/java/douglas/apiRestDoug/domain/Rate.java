@@ -7,7 +7,7 @@ import jakarta.persistence.*;
 public class Rate {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Tb_rate_id")
+    @Column(name = "Tb_rate_id", unique = true)
     private Long id;
 
     @Column(name = "number_cases")
@@ -23,8 +23,7 @@ public class Rate {
 
     }
 
-    public Rate(Long id, int numberCases, Double grossRate, Double adjustedRate) {
-        this.id = id;
+    public Rate(int numberCases, Double grossRate, Double adjustedRate) {
         this.numberCases = numberCases;
         this.grossRate = grossRate;
         this.adjustedRate = adjustedRate;
