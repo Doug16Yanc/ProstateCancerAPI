@@ -1,5 +1,6 @@
 package douglas.apiRestDoug.controller;
 
+import douglas.apiRestDoug.controller.dto.RateDTO;
 import douglas.apiRestDoug.controller.dto.RegionDTO;
 import douglas.apiRestDoug.domain.Region;
 import douglas.apiRestDoug.domain.Rate;
@@ -62,7 +63,7 @@ public class RegionController {
         if (!regions.isEmpty()){
             for (Region region : regions) {
 
-                listRegionsDTO.add(new RegionDTO((region.getName(), region.getPopulation(), region.getMalePopulation(), region.getRate()));
+                listRegionsDTO.add(new RegionDTO(region.getName(), region.getPopulation(), region.getMalePopulation(), new Rate(region.getRate().getNumberCases(), region.getRate().getGrossRate(), region.getRate().getAdjustedRate())));
             }
             return ResponseEntity.ok(listRegionsDTO);
         }
@@ -82,9 +83,9 @@ public class RegionController {
 
             Rate rate = new Rate();
 
-            rate.setNumberCases(regionDTO.rateDTO().numberCases());
-            rate.setGrossRate((regionDTO.rateDTO().grossRate()));
-            rate.setAdjustedRate(regionDTO.rateDTO().adjustedRate());
+            rate.setNumberCases(regionDTO.rate().getNumberCases());
+            rate.setGrossRate((regionDTO.rate().getGrossRate()));
+            rate.setAdjustedRate(regionDTO.rate().getAdjustedRate());
 
             Region updatedRegion = regionService.updateRegion(region);
 
@@ -103,7 +104,7 @@ public class RegionController {
         if (regionFound.isPresent()) {
             Region region = regionFound.get();
             regionService.delete(region);
-            return ResponseEntity.status(HttpStatus.ACCEPTED).body("Region " + region.getId() + " and " + region.getName() " deleted successfully.");
+            return ResponseEntity.status(HttpStatus.ACCEPTED).body("Region " + region.getId() + " and " + region.getName() + " deleted successfully.");
         }
         else {
             throw new RuntimeException("Region not found.\n");

@@ -16,8 +16,8 @@ public class Region {
     @Column(name = "male_population")
     private int malePopulation;
 
-    @JoinColumn(name = "tb_rate_id")
-    @OneToOne
+
+    @Embedded
     private Rate rate;
     public Region() {
 

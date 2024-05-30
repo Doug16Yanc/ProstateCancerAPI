@@ -2,13 +2,8 @@ package douglas.apiRestDoug.domain;
 
 import jakarta.persistence.*;
 
-@Entity
-@Table(name = "tb_rate")
+@Embeddable
 public class Rate {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Tb_rate_id", unique = true)
-    private Long id;
 
     @Column(name = "number_cases")
     private int numberCases;
@@ -27,14 +22,6 @@ public class Rate {
         this.numberCases = numberCases;
         this.grossRate = grossRate;
         this.adjustedRate = adjustedRate;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public int getNumberCases() {
